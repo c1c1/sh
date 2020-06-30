@@ -1,5 +1,51 @@
 # Changelog
 
+## 1.13.1 - 4/28/20
+*   regression fix if `_fg=False` [#520](https://github.com/amoffat/sh/issues/520)
+
+## 1.13.0 - 4/27/20
+*   minor Travis CI fixes [#492](https://github.com/amoffat/sh/pull/492)
+*   bugfix for boolean long options not respecting `_long_prefix` [#488](https://github.com/amoffat/sh/pull/488)
+*   fix deprecation warning on Python 3.6 regexes [#482](https://github.com/amoffat/sh/pull/482)
+*   `_pass_fds` and `_close_fds` special kwargs for controlling file descriptor inheritance in child.
+*   more efficiently closing inherited fds [#406](https://github.com/amoffat/sh/issues/406)
+*   bugfix where passing invalid dictionary to `_env` will cause a mysterious child 255 exit code. [#497](https://github.com/amoffat/sh/pull/497)
+*   bugfix where `_in` using 0 or `sys.stdin` wasn't behaving like a TTY, if it was in fact a TTY. [#514](https://github.com/amoffat/sh/issues/514)
+*   bugfix where `help(sh)` raised an exception [#455](https://github.com/amoffat/sh/issues/455)
+*   bugfix fixing broken interactive ssh tutorial from docs
+*   change to automatic tty merging into a single pty if `_tty_in=True` and `_tty_out=True`
+*   introducing `_unify_ttys`, default False, which allows explicit tty merging into single pty
+*   contrib command for `ssh` connections requiring passwords
+*   performance fix for polling output too fast when using `_iter` [#462](https://github.com/amoffat/sh/issues/462)
+*   execution contexts can now be used in python shell [#466](https://github.com/amoffat/sh/pull/466)
+*   bugfix `ErrorReturnCode` instances can now be pickled
+*   bugfix passing empty string or `None` for `_in` hanged [#427](https://github.com/amoffat/sh/pull/427)
+*   bugfix where passing a filename or file-like object to `_out` wasn't using os.dup2 [#449](https://github.com/amoffat/sh/issues/449)
+*   regression make `_fg` work with `_cwd` again [#330](https://github.com/amoffat/sh/issues/330)
+*   an invalid `_cwd` now raises a `ForkException` not an `OSError`.
+*   AIX support [#477](https://github.com/amoffat/sh/issues/477)
+*   added a `timeout=None` param to `RunningCommand.wait()` [#515](https://github.com/amoffat/sh/issues/515)
+
+## 1.12.14 - 6/6/17
+*   bugfix for poor sleep performance [#378](https://github.com/amoffat/sh/issues/378)
+*   allow passing raw integer file descriptors for `_out` and `_err` handlers
+*   bugfix for when `_tee` and `_out` are used, and the `_out` is a tty or pipe [#384](https://github.com/amoffat/sh/issues/384)
+*   bugfix where python 3.3+ detected different arg counts for bound method output callbacks [#380](https://github.com/amoffat/sh/issues/380)
+
+## 1.12.12, 1.12.13 - 3/30/17
+*   pypi readme doc bugfix [PR#377](https://github.com/amoffat/sh/pull/377)
+
+## 1.12.11 - 3/13/17
+
+*   bugfix for relative paths to `sh.Command` not expanding to absolute paths [#372](https://github.com/amoffat/sh/issues/372)
+*   updated for python 3.6
+*   bugfix for SIGPIPE not being handled correctly on pipelined processes [#373](https://github.com/amoffat/sh/issues/373)
+
+## 1.12.10 - 3/02/17
+
+*   bugfix for file descriptors over 1024 [#356](https://github.com/amoffat/sh/issues/356)
+*   bugfix when `_err_to_out` is True and `_out` is pipe or tty [#365](https://github.com/amoffat/sh/issues/365)
+
 ## 1.12.9 - 1/04/17
 
 *   added `_bg_exc` for silencing exceptions in background threads [#350](https://github.com/amoffat/sh/pull/350)
